@@ -27,7 +27,7 @@ data.forEach((post, index) => {
   html += "<hr \\>"
 
   if ((index % 10) == 0) {
-    html += `<a href="./${pages.length + 2}.html"> Next page </a>`
+    html += `<a href="/meower-scratch-backup/${pages.length + 2}.html"> Next page </a>`
     pages.push(html);
     html = css;
 
