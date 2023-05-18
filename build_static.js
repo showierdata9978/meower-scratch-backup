@@ -27,7 +27,7 @@ data.forEach((post, index) => {
   html += "<hr \\>"
 
   if ((index % 10) == 0) {
-    html += `<a href="/?p=${pages.length + 2}"> Next page </a>`
+    html += `<a href="/${pages.length + 2}.html"> Next page </a>`
     pages.push(html);
     html = css;
 
@@ -39,17 +39,16 @@ pages.push(html)
 
 
 // Writing the files 
-const outDir = JoinPath(__dirname, "/out/")
+const outDir = __dirname
 
 if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir)
 }
 
-pages.forEach((page, index) => {
+pages.forEach(async (page, index) => {
    const fp = JoinPath(outDir, `${index}.html`);
    fs.writeFileSync(fp, page);
 
-})
+});
 
-fs.writeFileSync(JoinPath(outDir, "dump.json"), JSON.stringify(data)); 
-fs.copyFileSync(JoinPath(__dirname, "styles.css"),JoinPath(outDir, "styles.css")) 
+fs.copyFileSync(JoinPath(outDir, "0.html"), JoinPath(outDir, "index.html"));
