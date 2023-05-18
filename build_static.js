@@ -4,7 +4,7 @@ import { dirname, join as JoinPath } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
+ 
 
 const data = JSON.parse(
   fs.readFileSync("dump.json"));
