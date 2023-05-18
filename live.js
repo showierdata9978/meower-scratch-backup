@@ -28,7 +28,7 @@ data.forEach((post, index) => {
   html += "<hr \\>"
 
   if ((index % 10) == 0) {
-    html += `<a href="/?p=${pages.length + 2}"> Next page </a>`
+    html += `<a href="/?p=${pages.length + 1}"> Next page </a>`
     pages.push(html);
     html = css;
 
