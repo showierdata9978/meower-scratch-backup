@@ -74,7 +74,7 @@ export default async function generate(genURL, data) {
 
 	  
 	  
-	  effect_html += `<button onclick="window.location.href = '/${genURL(pages.length+2)}'"> &gt;&gt; </button></div>`;
+	  effect_html += `<button onclick="window.location.href = '/${genURL(pages.length != 0 ? pages.length+2 : 1)}'"> &gt;&gt; </button></div>`;
 
 	  html+= effect_html
 
