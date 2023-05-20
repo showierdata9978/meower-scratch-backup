@@ -10,11 +10,11 @@ const __dirname = dirname(__filename);
 const app = express();
 
 const pages = await generate((index) => {
-  return `?p=${index}`;
-}, JSON.parse(fs.readFileSync("dump.json")));
+	return `?p=${index}`;
+  }, JSON.parse(fs.readFileSync("dump.json")));
 
 app.get("/", (req, res) => {
-  return res.send("<!DOCTYPE html>\n" + pages[req.query.p ? parseInt(req.query.p, 10) : 0]);
+  return res.send("<!DOCTYPE html>\n" + pages[req.query.p ? parseInt(req.query.p) : 0]);
 });
 
 app.get("/styles.css", (req, res) => {
@@ -25,5 +25,3 @@ app.get("/styles.css", (req, res) => {
 app.listen(3000, () => {
   console.log("server started");
 });
-//I'm also fakefurry so if you see FakeFurry join, it's me - WlodekM
-// alr - showier

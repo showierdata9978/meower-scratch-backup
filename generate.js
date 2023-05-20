@@ -26,6 +26,7 @@ export default async function generate(genURL, data) {
     try {
 		if (cashe[post.username] === undefined) {
 			cashe[post.username] = await (await fetch(`https://trampoline.turbowarp.org/proxy/users/${post.username}/`)).json();
+			await new Promise((resolve, reject) => setTimeout(() => resolve()), 500); // rate limit
 		}
 
     	user = cashe[post.username]
@@ -46,13 +47,43 @@ export default async function generate(genURL, data) {
 
 	// paginate every few posts
     if (index % 10 == 0) {
-      html += `<a href="/${genURL(pages.length + 1)}"> Next page </a>`;
+      
+	  let effect_html = "";
+	  let effectOffset = 9; // Maximum offset value
+
+	  let effect_tracker = -effectOffset;
+
+	  let OldestButtonPage = pages.length+1 - effectOffset;
+	  let NewestButtonPage = pages.length+1 + effectOffset;
+	  
+	  if (OldestButtonPage < 0) {
+		OldestButtonPage = 0
+		effect_tracker = 0;
+	  }
+	  
+	  if (pages.length !== 0) {
+		  effect_html += `<br /><div style="display: inline-block"><button onclick="window.location.href = '/${genURL(pages.length)}'"> &lt;&lt; </button>`;
+	  } else {
+		effect_html += `<br /><div style="display: inline-block">`;
+	  }
+	  
+	  for (let i = OldestButtonPage; i <= NewestButtonPage; i++) {
+		  effect_html += `<button onclick="window.location.href = '/${genURL(pages.length+1+effect_tracker)}'">${effect_tracker}</button>`;
+		  effect_tracker++;
+	  }
+
+	  
+	  
+	  effect_html += `<button onclick="window.location.href = '/${genURL(pages.length+2)}'"> &gt;&gt; </button></div>`;
+
+	  html+= effect_html
+
       pages.push(html);
-      html = css;
+      html = css+ effect_html+"<br />";
       console.log("page " + pages.length);
     }
 
-    await new Promise((resolve, reject) => setTimeout(() => resolve()), 500); // rate limit
+    
   }
 
   pages.push(html);

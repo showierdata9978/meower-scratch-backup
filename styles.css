@@ -19,3 +19,9 @@ blockquote {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 }
+
+button {
+   margin-bottom: 8px;
+   float: left;
+   display: flex;
+}
