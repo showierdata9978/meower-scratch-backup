@@ -22,4 +22,4 @@ pages.forEach(async (page, index) => {
   fs.writeFileSync(fp, "<!DOCTYPE html>\n" + page);
 });
 
-fs.copyFileSync(JoinPath(outDir, "0.html"), JoinPath(outDir, "index.html"));
+fs.copyFileSync(JoinPath(outDir, "1.html"), JoinPath(outDir, "index.html"));
