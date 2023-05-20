@@ -69,11 +69,14 @@ export default async function generate(genURL, data) {
 	  } else {
 		effect_html += `<br /><div style="display: inline-block">`;
 	  }
-	  
+
 	  for (let i = OldestButtonPage; i <= NewestButtonPage; i++) {
-		  if (effect_tracker == 0) {effect_html += `<button disabled>${effect_tracker}</button>`;}
-		  else {effect_html += `<button onclick="window.location.href = '/${genURL(true_page+effect_tracker)}'">${effect_tracker}</button>`};
-		  effect_tracker++;
+  if (effect_tracker === 0) {
+    effect_html += `<button disabled>${effect_tracker}</button>`;
+  } else {
+    effect_html += `<button onclick="window.location.href = '/${genURL(true_page + effect_tracker)}'">${effect_tracker}</button>`;
+  }
+  effect_tracker++;
 	  }
 
 	  
