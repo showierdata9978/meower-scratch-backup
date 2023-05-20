@@ -15,12 +15,12 @@ export default async function generate(genURL, data) {
   let html = css;
   let pages = [];
 
-  let true_page = -1;
+  let true_page = 0;
   html += `<h1> ${data[0]["topic"]["title"]} </h1>`;
 
   for (let index = 0; index < data.length; index++) {
 	
-    console.log("post " + index);
+    //console.log("post " + index);
     let post = data[index];
     let user;
 
@@ -65,25 +65,27 @@ export default async function generate(genURL, data) {
 	  }
 	  
 	  if (pages.length !== 0) {
-		  effect_html += `<br /><div style="display: inline-block"><button onclick="window.location.href = '/${genURL(true_page)}'"> &lt;&lt; </button>`;
+		  effect_html += `<br /><div style="display: inline-block"><button onclick="window.location.href = '/${genURL(true_page-1)}'"> &lt;&lt; </button>`;
 	  } else {
 		effect_html += `<br /><div style="display: inline-block">`;
 	  }
 	  
 	  for (let i = OldestButtonPage; i <= NewestButtonPage; i++) {
-		  effect_html += `<button onclick="window.location.href = '/${genURL(true_page+1+effect_tracker)}'">${effect_tracker}</button>`;
+		  if (effect_tracker == 0) {effect_html += `<button disabled>${effect_tracker}</button>`;}
+		  else {effect_html += `<button onclick="window.location.href = '/${genURL(true_page+1+effect_tracker)}'">${effect_tracker}</button>`};
 		  effect_tracker++;
 	  }
 
 	  
 	  
-	  effect_html += `<button onclick="window.location.href = '/${true_page == 0 ? genURL(true_page+2) : genURL(1)}'"> &gt;&gt; </button></div>`;
+	  effect_html += `<button onclick="window.location.href = '/${genURL(true_page+1)}'"> &gt;&gt; </button></div>`;
 
 	  html+= effect_html
 
       pages.push(html);
       html = css+ effect_html+"<br />";
       console.log("page " + pages.length);
+	  console.log("true pages: " + true_page)
     }
 
     
