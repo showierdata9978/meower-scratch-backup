@@ -72,7 +72,7 @@ export default async function generate(genURL, data) {
 	  
 	  for (let i = OldestButtonPage; i <= NewestButtonPage; i++) {
 		  if (effect_tracker == 0) {effect_html += `<button disabled>${effect_tracker}</button>`;}
-		  else {effect_html += `<button onclick="window.location.href = '/${genURL(true_page+1+effect_tracker)}'">${effect_tracker}</button>`};
+		  else {effect_html += `<button onclick="window.location.href = '/${genURL(true_page+effect_tracker)}'">${effect_tracker}</button>`};
 		  effect_tracker++;
 	  }
 
