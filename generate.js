@@ -15,9 +15,11 @@ export default async function generate(genURL, data) {
   let html = css;
   let pages = [];
 
+  let true_page = -1;
   html += `<h1> ${data[0]["topic"]["title"]} </h1>`;
 
   for (let index = 0; index < data.length; index++) {
+	
     console.log("post " + index);
     let post = data[index];
     let user;
@@ -47,14 +49,15 @@ export default async function generate(genURL, data) {
 
 	// paginate every few posts
     if (index % 10 == 0) {
+	  true_page++;
       
 	  let effect_html = "";
 	  let effectOffset = 9; // Maximum offset value
 
 	  let effect_tracker = -effectOffset;
 
-	  let OldestButtonPage = pages.length+1 - effectOffset;
-	  let NewestButtonPage = pages.length+1 + effectOffset;
+	  let OldestButtonPage = true_page - effectOffset;
+	  let NewestButtonPage = true_page + effectOffset;
 	  
 	  if (OldestButtonPage < 0) {
 		OldestButtonPage = 0
@@ -62,19 +65,19 @@ export default async function generate(genURL, data) {
 	  }
 	  
 	  if (pages.length !== 0) {
-		  effect_html += `<br /><div style="display: inline-block"><button onclick="window.location.href = '/${genURL(pages.length)}'"> &lt;&lt; </button>`;
+		  effect_html += `<br /><div style="display: inline-block"><button onclick="window.location.href = '/${genURL(true_page)}'"> &lt;&lt; </button>`;
 	  } else {
 		effect_html += `<br /><div style="display: inline-block">`;
 	  }
 	  
 	  for (let i = OldestButtonPage; i <= NewestButtonPage; i++) {
-		  effect_html += `<button onclick="window.location.href = '/${genURL(pages.length+1+effect_tracker)}'">${effect_tracker}</button>`;
+		  effect_html += `<button onclick="window.location.href = '/${genURL(true_page+1+effect_tracker)}'">${effect_tracker}</button>`;
 		  effect_tracker++;
 	  }
 
 	  
 	  
-	  effect_html += `<button onclick="window.location.href = '/${genURL(pages.length != 0 ? pages.length+2 : 1)}'"> &gt;&gt; </button></div>`;
+	  effect_html += `<button onclick="window.location.href = '/${genURL(true_page+2)}'"> &gt;&gt; </button></div>`;
 
 	  html+= effect_html
 
