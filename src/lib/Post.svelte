@@ -15,14 +15,14 @@
 </script>
 
 <div class="post_wrapper" bind:this={wrapper}>
-	{data.username} Sent:
+	<img src="/pfps/{data.username}.png" alt="{data.username}'s pfp"> {data.username} <br>
 	{@html data.content.html}
 </div>
 
 <style>
 	.post_wrapper {
 		border: 5px solid white;
-		border-radius: 20px;
+		border-radius: 20px 20px 0px 0px;
 		padding: 5px;
 		margin: 5px;
 	}
