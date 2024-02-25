@@ -56,7 +56,7 @@ const fetchAndSaveProfilePictures = async (dumpFilePath) => {
                 continue;
             }
 
-            const url = `https://cdn2.scratch.mit.edu/get_image/user/${userId}_60x60.png`;
+            const url = `https://cdn2.scratch.mit.edu/get_image/user/${userId}_500x500.png`;
 
             const response = await fetch(url);
 
@@ -77,4 +77,4 @@ const fetchAndSaveProfilePictures = async (dumpFilePath) => {
 };
 
 // Example usage
-fetchAndSaveProfilePictures('src/assets/dump.json');
+fetchAndSaveProfilePictures('../src/assets/dump.json');
