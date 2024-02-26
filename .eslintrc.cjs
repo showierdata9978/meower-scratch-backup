@@ -3,6 +3,7 @@ module.exports = {
 		"browser": true,
 		"es2021": true
 	},
+	"ignorePatterns": ["node_modules", "dist", "scripts"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
@@ -23,7 +24,15 @@ module.exports = {
 		{
 			files: ["*.svelte"],
 			parser: "svelte-eslint-parser",
-		},
+			parserOptions: {
+			  parser: {
+				// Specify a parser for each lang.
+				ts: "@typescript-eslint/parser",
+				js: "espree",
+				typescript: "@typescript-eslint/parser"
+			  }
+			}
+		  }
 	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {

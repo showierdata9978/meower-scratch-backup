@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from "./stores"
+  import { page } from "./stores";
 
 	export let max_pages = 0;
 
@@ -16,7 +16,7 @@
 
 <div class="wrapper">
 <button disabled={$page===0} on:click|preventDefault={() => {
-  $page = 0
+  $page = 0;
 }}>
   &lt;&lt;
 </button>
@@ -34,7 +34,7 @@
 >+1</button>
 
 <button disabled={$page===max_pages} on:click|preventDefault={() => {
-  $page = max_pages
+  $page = max_pages;
 }}>
   &gt;&gt;
 </button>
