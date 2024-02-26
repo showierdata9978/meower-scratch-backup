@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { ScratchDump } from './lib/types.ts';
+	import type { ScratchDump } from './lib/types';
   import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
   import Dump from "./assets/dump.json"
 	import Post from './lib/Post.svelte';
 	import Navigation from './lib/Navigation.svelte';
